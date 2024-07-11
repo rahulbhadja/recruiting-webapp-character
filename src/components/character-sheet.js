@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import SkillCheck from './skill-check'
+import PartySkillCheck from './party-skill-check'
 
 const MAX_ATTRIBUTES_SUM = 70
 const initialAttributes = {
@@ -243,6 +245,13 @@ function CharacterSheet({ ATTRIBUTE_LIST, CLASS_LIST, SKILL_LIST }) {
       <div key={index}>
         <h4>Character {index + 1}</h4>
 
+        <div>
+          <SkillCheck
+            character={character}
+            skillList={SKILL_LIST}
+            calculateModifier={calculateModifier}
+          />
+        </div>
         <div
           style={{
             display: 'flex',
@@ -278,6 +287,11 @@ function CharacterSheet({ ATTRIBUTE_LIST, CLASS_LIST, SKILL_LIST }) {
       <button onClick={saveAllCharacters}>Save All Characters</button>
       <button onClick={loadAllCharacters}>Load All Characters</button>
 
+      <PartySkillCheck
+        characters={characters}
+        skillList={SKILL_LIST}
+        calculateModifier={calculateModifier}
+      />
       {characters.map((character, index) => (
         <div key={index}>{renderCharacterControls(character, index)}</div>
       ))}
